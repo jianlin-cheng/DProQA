@@ -7,15 +7,15 @@ DProQ: A Gated-Graph Transformer for Predicting the Quality of Protein Complex S
 1. Set up Conda environment locally a new python environment
    
    ```bash
-   conda env create --name DPROQ -f environment.yml
+   conda env create --name DProQ -f environment.yml
    ```
 
 2. Activate conda environment
    ```bash
-   conda acitvate DPROQUsage
+   conda acitvate DPRoQ
    ```
    
-# Running DPROQ for inference
+# Running DProQ for inference
    
 For inference, the GPU is required. We provide few protein complexes in ./example/raw_pdb folder.
 Otherwise, you could do inference for your own protein complex structure.
@@ -37,4 +37,4 @@ GPU REQUIRED!!!
    python ./evaluate_complex.py -c ./example/raw_pdb -w ./example/work/ -r ./example/result
    ```
 
-4. The ranking results. DOCKQ_ranking.csv is stored in result folder.
+4. The ranking results. ranking_res.csv is stored in result folder.
