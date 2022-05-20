@@ -40,6 +40,7 @@ We will upload our benchmark set soon.
 2. Set up conda environment locally
    
    ```bash
+   cd DProQ
    conda env create --name DProQ -f environment.yml
    ```
 
