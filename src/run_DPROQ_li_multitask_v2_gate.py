@@ -16,7 +16,7 @@ from src.graph_transformer_edge_layer import GatedGraphTransformerLayer
 father_path = Path(__file__).resolve().parents[1]
 
 # load config file
-config_file = f'{father_path}/configs/Lab_swa_multitask_gate_af2knn10_v4_seed222.json'
+config_file = f'{father_path}/configs/Lab_saw_mulitase_gate_af2_decoy_knn10_seed2222.json'
 with open(config_file) as f:
     print(f'Loading config file {config_file}')
     config = json.load(f)
