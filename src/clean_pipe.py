@@ -1,7 +1,5 @@
 """
 @ Description: Clean raw pdb
-@ Description: Shawn Chen
-@ Date: 2022-03-28
 """
 
 import os

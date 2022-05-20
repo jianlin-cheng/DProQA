@@ -3,7 +3,7 @@ channels:
   - bioconda
   - pytorch
   - salilab
-  - https://anaconda.org/dglteam/dgl-cuda11.1/0.6.0post1/download
+  - dglteam
   - conda-forge
   - defaults
 dependencies:
