@@ -86,6 +86,7 @@ customer_data_folder
 Following four tables show DProQ's consistent **best** result on HAF2 and DBM55-AF2 test sets in terms of **hit rate** and 
 **ranking loss**.
 
+## HAF2  test set
 | ID      | DPROQ      | DPROQ_GT | DPROQ_GTE | DPROQ_GTN | GNN_DOVE | BEST     |
 | ------- |------------| -------- | --------- | --------- | -------- | -------- |
 | 7AOH    | 10/10/10   | 10/10/10 | 10/10/10  | 10/10/10  | 9/9/0    | 10/10/10 |
@@ -123,7 +124,7 @@ Following four tables show DProQ's consistent **best** result on HAF2 and DBM55-
 | BEST   | **0.195 ± 0.185** | 0.243 ± 0.206 | 0.227 ± 0.21 | 0.239 ± 0.187 | 0.343 ± 0.228 |
 
 
-
+## DBM55-AF2 test set
 | Target  | DPROQ       | DPROQ_GT | DPROQ_GTE | DPROQ_GTN | GNN_DOVE | BEST    |
 | ------- |-------------| -------- | --------- | --------- | -------- | ------- |
 | 6AL0    | 9/2/0       | 10/0/0   | 10/0/0    | 10/2/0    | 6/0/0    | 10/2/0  |
