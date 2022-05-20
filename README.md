@@ -3,9 +3,9 @@
 [DProQ](https://www.biorxiv.org/content/early/2022/05/20/2022.05.19.492741), is a Gated-Graph Transformer model for end-to-end protein complex structure's quality evaluation. DProQ achieves significant speed-ups and better quality 
 compared to current baseline method. If you have any questions or suggestions, please contact us by  xcbh6@umsystem.edu. We are happy to help!
 
-![pipeline.png](/Users/xiaochen/PycharmProjects/DProQ/images/pipeline.png)
+![pipeline.png](./images/pipeline.png)
 
-![gated_graph_transformer.png](/Users/xiaochen/PycharmProjects/DProQ/images/gated_graph_transformer.png)
+![gated_graph_transformer.png](./images/gated_graph_transformer.png)
 
 # Citation
 
