@@ -10,7 +10,7 @@ import torch.nn as nn
 from torch import optim
 import torchmetrics
 import pytorch_lightning as pl
-from graph_transformer_edge_layer import GatedGraphTransformerLayer
+from src.graph_transformer_edge_layer import GatedGraphTransformerLayer
 
 # get father path
 father_path = Path(__file__).resolve().parents[1]

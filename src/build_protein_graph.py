@@ -8,7 +8,7 @@ import torch
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 
-from utils import pdb2fasta, run_dssp, laplacian_positional_encoding, \
+from src.utils import pdb2fasta, run_dssp, laplacian_positional_encoding, \
     ss3_one_hot, sequence_one_hot, pdb2graph_new_chain_info, update_node_feature, update_edge_feature
 
 

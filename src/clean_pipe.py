@@ -7,7 +7,6 @@
 import os
 from shutil import copy
 from subprocess import call
-from typing import List
 from biopandas.pdb import PandasPdb
 from pathlib import Path
 
