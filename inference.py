@@ -96,7 +96,7 @@ tidy_pdb_list = os.listdir(tidy_folder)
 tidy_pdb_list = [os.path.join(tidy_folder, i) for i in tidy_pdb_list]
 
 if len(ERROR_LIST) != 0:
-    logging.info(f'ERROR LIST contains {len(ERROR_LIST)} items:')
+    logging.warning(f'ERROR LIST contains {len(ERROR_LIST)} items:')
     for i in ERROR_LIST:
         logging.info(i)
     list_to_txt(ERROR_LIST, os.path.join(result_folder, 'error.list'))
