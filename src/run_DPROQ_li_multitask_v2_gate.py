@@ -10,7 +10,7 @@ import torch.nn as nn
 from torch import optim
 import torchmetrics
 import pytorch_lightning as pl
-from src.graph_transformer_edge_layer import GatedGraphTransformerLayer
+from src.graph_transformer_edge_layer import GraphTransformerLayer
 
 # get father path
 father_path = Path(__file__).resolve().parents[1]
@@ -50,10 +50,10 @@ _dataset = config['dataset']
 _criterion = config['criterion']
 
 
-class FeatureLearning(nn.Module):
-    """Feature learning module for node and edge features"""
+class ResNetEmbedding(nn.Module):
+    """Feature Learning Module"""
     def __init__(self, node_input_dim: int, edge_input_dim: int, out_dim: int):
-        super(FeatureLearning, self).__init__()
+        super(ResNetEmbedding, self).__init__()
         self.node_input_dim = node_input_dim
         self.edge_input_dim = edge_input_dim
 
@@ -73,14 +73,14 @@ class FeatureLearning(nn.Module):
         return node_feature_embedded, edge_feature_embedded
 
 
-class MLPReadoutClass(nn.Module):
+class MLPReadoutClassV2(nn.Module):
+    """Read-out Module"""
     def __init__(self, input_dim: int, output_dim: int, dp_rate=0.5, L=2):
-        super(MLPReadoutClass, self).__init__()
+        super(MLPReadoutClassV2, self).__init__()
         self.L = L
         self.list_FC_layer = nn.Sequential()
         for i in range(L):
-            self.list_FC_layer.add_module(f'Linear {i}',
-                                          nn.Linear(input_dim // 2 ** i, input_dim // 2 ** (i + 1), bias=True))
+            self.list_FC_layer.add_module(f'Linear {i}', nn.Linear(input_dim // 2 ** i, input_dim // 2 ** (i + 1), bias=True))
             self.list_FC_layer.add_module(f'BN {i}', nn.BatchNorm1d(input_dim // 2 ** (i + 1)))
             self.list_FC_layer.add_module(f'relu {i}', nn.LeakyReLU())
             self.list_FC_layer.add_module(f'dp {i}', nn.Dropout(p=dp_rate))
@@ -94,7 +94,8 @@ class MLPReadoutClass(nn.Module):
         return y_1, y_2
 
 
-class DPROQ(pl.LightningModule):
+class DPROQLi(pl.LightningModule):
+    """DProQ model"""
     def __init__(self):
         super().__init__()
         self.node_input_dim = _node_input_dim
@@ -127,26 +128,25 @@ class DPROQ(pl.LightningModule):
         self.mse_weight = _mse_weight
         self.ce_weight = 1 - self.mse_weight
 
-        self.feature_learning = FeatureLearning(self.node_input_dim,
+        self.resnet_embedding = ResNetEmbedding(self.node_input_dim,
                                                 self.edge_input_dim,
                                                 self.hidden_dim)
-
         self.graph_transformer_layer = nn.ModuleList(
-            [GatedGraphTransformerLayer(in_dim=self.hidden_dim,
-                                        out_dim=self.hidden_dim,
-                                        num_heads=self.num_heads,
-                                        dropout=self.dp_rate,
-                                        layer_norm=self.layer_norm,
-                                        batch_norm=self.batch_norm,
-                                        residual=self.residual,
-                                        use_bias=True
-                                        ) for _ in range(self.graph_n_layer)]
+            [GraphTransformerLayer(in_dim=self.hidden_dim,
+                                   out_dim=self.hidden_dim,
+                                   num_heads=self.num_heads,
+                                   dropout=self.dp_rate,
+                                   layer_norm=self.layer_norm,
+                                   batch_norm=self.batch_norm,
+                                   residual=self.residual,
+                                   use_bias=True
+                                   ) for _ in range(self.graph_n_layer)]
         )
-        self.MLP_layer = MLPReadoutClass(input_dim=self.hidden_dim, output_dim=1, dp_rate=_readout_dropout)
+        self.MLP_layer = MLPReadoutClassV2(input_dim=self.hidden_dim, output_dim=1, dp_rate=_readout_dropout)
 
     def forward(self, g, node_feature, edge_feature):
         # node feature dim and edge feature dim
-        node_feature_embedded, edge_feature_embedded = self.feature_learning(node_feature, edge_feature)
+        node_feature_embedded, edge_feature_embedded = self.resnet_embedding(node_feature, edge_feature)
         for layer in self.graph_transformer_layer:
             h, e = layer(g, node_feature_embedded, edge_feature_embedded)
         g.ndata['h'] = h
@@ -163,7 +163,6 @@ class DPROQ(pl.LightningModule):
         y_1 = self.MLP_layer(hg)
         return y_1
 
-    # test if we need this following part.
     def configure_optimizers(self):
         if self.opt == 'adam':
             optimizer = optim.Adam(self.parameters(),

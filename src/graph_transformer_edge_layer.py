@@ -53,7 +53,7 @@ def sigmoid_gage(attention_score, gate):
     return func
 
 
-class MultiHeadAttentionLayerGate(nn.Module):
+class MultiHeadAttentionLayer(nn.Module):
     """Single Gated Attention Head """
     def __init__(self, in_dim: int, out_dim: int, num_heads: int, use_bias: bool):
         super().__init__()
@@ -125,7 +125,8 @@ class MultiHeadAttentionLayerGate(nn.Module):
         return h_out, e_out
 
 
-class GatedGraphTransformerLayer(nn.Module):
+class GraphTransformerLayer(nn.Module):
+    """Gated Graph Transformer"""
     def __init__(self, in_dim, out_dim, num_heads, dropout=0.0, layer_norm=False, batch_norm=True, residual=True,
                  use_bias=False):
         super().__init__()
@@ -137,7 +138,7 @@ class GatedGraphTransformerLayer(nn.Module):
         self.residual = residual
         self.layer_norm = layer_norm
         self.batch_norm = batch_norm
-        self.attention = MultiHeadAttentionLayerGate(in_dim, out_dim // num_heads, num_heads, use_bias)
+        self.attention = MultiHeadAttentionLayer(in_dim, out_dim // num_heads, num_heads, use_bias)
 
         self.O_h = nn.Linear(out_dim, out_dim)
         self.O_e = nn.Linear(out_dim, out_dim)
