@@ -50,6 +50,9 @@ if not os.path.isdir(result_folder):
     print(f'Creating result folder')
     os.makedirs(result_folder)
 
+work_dir = os.path.abspath(work_dir)
+result_folder = os.path.abspath(result_folder)
+
 dist_folder = os.path.join(work_dir, 'DIST')
 tidy_folder = os.path.join(work_dir, 'TIDY')
 os.makedirs(dist_folder, exist_ok=True)
