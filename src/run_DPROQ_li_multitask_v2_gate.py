@@ -7,7 +7,6 @@ import dgl
 from pathlib import Path
 import torch
 import torch.nn as nn
-from torch import optim
 import torchmetrics
 import pytorch_lightning as pl
 from src.graph_transformer_edge_layer import GraphTransformerLayer
