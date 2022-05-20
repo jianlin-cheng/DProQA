@@ -67,7 +67,7 @@ python inference.py
 **DProQ requires GPU**. We provide few protein complexes in example/raw_pdb folder for test. The evaluation result Ranking.csv is stored in result_folder.
 
 ```bash
-python ./inference.py -c ./example/raw_pdb -w ./example/work/ -r ./example/result
+python ./inference.py -c ./examples/6AL0/ -w ./example/work/ -r ./example/result
 ```
 
 You can build you onw dataset for evaluation, the data folder should look like:
