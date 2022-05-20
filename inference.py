@@ -19,7 +19,7 @@ from torch.utils.data import DataLoader
 from src.clean_pipe import clean_pipe
 from src.utils import list_to_txt, distance_helper, TestData, collate
 from src.build_protein_graph import build_protein_graph
-from src.run_DPROQ_li_multitask_v2_gate import DPROQ
+from src.run_DPROQ_li_multitask_v2_gate import DPROQLi
 
 parser = ArgumentParser(description='Evaluate protein complex structures')
 parser.add_argument('--complex_folder', '-c', type=str, required=True)
@@ -135,7 +135,7 @@ eval_loader = DataLoader(eval_set.data,
 device = torch.device('cuda')  # set cuda device
 current_path = Path().absolute()
 ckpt_file = f'{current_path}/ckpt/pre_train_seed_222.ckpt'
-model = DPROQ.load_from_checkpoint(ckpt_file)
+model = DPROQLi.load_from_checkpoint(ckpt_file)
 logging.info(f'Loading {ckpt_file}')
 model = model.to(device)
 model.eval()  # turn on model eval mode
