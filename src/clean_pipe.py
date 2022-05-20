@@ -10,7 +10,6 @@ from subprocess import call
 from typing import List
 from biopandas.pdb import PandasPdb
 from pathlib import Path
-from utils import txt_to_list, list_to_txt
 
 # get father path
 father_path = Path(__file__).resolve().parents[1]
