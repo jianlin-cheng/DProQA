@@ -1,5 +1,3 @@
-# WE ARE TESTING THIS PROJECT!!!
-
 # DProQ: A Gated-Graph Transformer for Predicting the Quality of Protein Complex Structure
 
 [DProQ](https://www.biorxiv.org/content/early/2022/05/20/2022.05.19.492741), is a Gated-Graph Transformer model for end-to-end protein complex structure's quality evaluation. DProQ achieves significant speed-ups and better quality 
@@ -69,7 +67,7 @@ python inference.py
 **DProQ requires GPU**. We provide few protein complexes in example/raw_pdb folder for test. The evaluation result Ranking.csv is stored in result_folder.
 
 ```bash
-python ./inference.py -c ./examples/6AL0/ -w ./example/work/ -r ./example/result
+python ./inference.py -c ./examples/6AL0/ -w ./examples/work/ -r ./examples/result
 ```
 
 You can build you onw dataset for evaluation, the data folder should look like:

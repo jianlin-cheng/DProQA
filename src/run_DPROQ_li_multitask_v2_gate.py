@@ -163,29 +163,29 @@ class DPROQLi(pl.LightningModule):
         y_1 = self.MLP_layer(hg)
         return y_1
 
-    def configure_optimizers(self):
-        if self.opt == 'adam':
-            optimizer = optim.Adam(self.parameters(),
-                                   lr=self.init_lr,
-                                   weight_decay=self.weight_decay)
-        elif self.opt == 'adamw':
-            optimizer = optim.AdamW(self.parameters(),
-                                    lr=self.init_lr,
-                                    weight_decay=self.weight_decay,
-                                    amsgrad=True)
-        else:
-            optimizer = optim.SGD(self.parameters(),
-                                  lr=self.init_lr,
-                                  weight_decay=self.weight_decay,
-                                  momentum=0.9,
-                                  nesterov=True)
-
-        return {
-            'optimizer': optimizer,
-            "lr_scheduler": {
-                'scheduler': torch.optim.lr_scheduler.StepLR(optimizer=optimizer,
-                                                             step_size=_lr_reduce_factor,
-                                                             gamma=0.5),
-                'monitor': 'train_loss'
-            }
-        }
+    # def configure_optimizers(self):
+    #     if self.opt == 'adam':
+    #         optimizer = optim.Adam(self.parameters(),
+    #                                lr=self.init_lr,
+    #                                weight_decay=self.weight_decay)
+    #     elif self.opt == 'adamw':
+    #         optimizer = optim.AdamW(self.parameters(),
+    #                                 lr=self.init_lr,
+    #                                 weight_decay=self.weight_decay,
+    #                                 amsgrad=True)
+    #     else:
+    #         optimizer = optim.SGD(self.parameters(),
+    #                               lr=self.init_lr,
+    #                               weight_decay=self.weight_decay,
+    #                               momentum=0.9,
+    #                               nesterov=True)
+    #
+    #     return {
+    #         'optimizer': optimizer,
+    #         "lr_scheduler": {
+    #             'scheduler': torch.optim.lr_scheduler.StepLR(optimizer=optimizer,
+    #                                                          step_size=_lr_reduce_factor,
+    #                                                          gamma=0.5),
+    #             'monitor': 'train_loss'
+    #         }
+    #     }
