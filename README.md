@@ -1,7 +1,9 @@
 # DProQ: A Gated-Graph Transformer for Protein Complex Structure Assessment
 
-[DProQ](https://www.biorxiv.org/content/early/2022/05/20/2022.05.19.492741), is a Gated-Graph Transformer model for end-to-end protein complex structure's quality evaluation. DProQ achieves significant speed-ups and better quality 
-compared to current baseline method. If you have any questions or suggestions, please contact us by  <xcbh6@umsystem.edu>. We are happy to help!
+[DProQ](https://www.biorxiv.org/content/early/2022/05/20/2022.05.19.492741), is a Gated-Graph Transformer model for 
+end-to-end protein complex structure's quality evaluation. DProQ achieves significant speed-ups and better quality 
+compared to current baseline method. If you have any questions or suggestions, please contact us by  <xcbh6@umsystem.edu>
+. We are happy to help!
 
 ![pipeline.png](./images/pipeline.png)
 
@@ -26,15 +28,19 @@ If you think our work is helpful, please cite our work by:
 ```
 
 # Dataset
+## Benchmark sets
 
 We provide our benchmark tests HAF2 and DBM55-AF2 for download by:
+
 ```bash
 wget https://zenodo.org/record/6569837/files/DproQ_benchmark.tgz
 ```
+
 Each dataset contains:
-1. decoy folder: decoys files
-2. native: native structure files
-3. label_info.csv: DockQ scores and CAPRI class label
+
+1. `decoy` folder: decoys files
+2. `native` folder: native structure files
+3. `label_info.csv`: DockQ scores and CAPRI class label
 
 # Installation
 
@@ -72,7 +78,7 @@ python inference.py
 
 # Use provided model weights to predict protein complex structures' quality
 
-**DProQ requires GPU**. We provide few protein complexes in example/raw_pdb folder for test. The evaluation result Ranking.csv is stored in result_folder.
+**DProQ requires GPU**. We provide few protein complexes in `example` folder for test. The evaluation result Ranking.csv is stored in result_folder.
 
 ```bash
 python ./inference.py -c ./examples/6AL0/ -w ./examples/work/ -r ./examples/result
@@ -90,12 +96,15 @@ customer_data_folder
 ```
 
 # Main results
+
 Following four tables show DProQ's consistent **best** result on HAF2 and DBM55-AF2 test sets in terms of *hit rate* and 
 *ranking loss*. The best result is highlighted on **bold**.
 
 ## HAF2  test set
+
 Table 1: Hit rate performance on the HAF2 dataset. The BEST column represents each target’s best-possible Top-10 result.
 The SUMMARY row lists the results when all targets are taken into consideration.
+
 | ID      | DPROQ      | DPROQ_GT | DPROQ_GTE | DPROQ_GTN | GNN_DOVE | BEST     |
 | ------- |------------| -------- | --------- | --------- | -------- | -------- |
 | 7AOH    | 10/10/10   | 10/10/10 | 10/10/10  | 10/10/10  | 9/9/0    | 10/10/10 |
@@ -113,9 +122,9 @@ The SUMMARY row lists the results when all targets are taken into consideration.
 | 7O27    | 10/10/0    | 10/10/0  | 10/10/0   | 10/10/0   | 10/4/0   | 10/10/0  |
 | SUMMARY | **10/9/4** | 8/7/4    | 8/7/4     | 8/7/4     | 8/7/3    | 13/10/4  |
 
-
 Table 2: Ranking loss performance on the HAF2 dataset. The BEST row represents the mean and standard deviation of the
 ranking losses for all targets.
+
 | Target | DPROQ             | DProQ_GT      | DPROQ_GTE    | DPROQ_GTN     | GNN_DOVE      |
 | ------ |-------------------| ------------- | ------------ | ------------- | ------------- |
 | 7AOH   | 0.066             | 0.026         | 0.026        | 0.058         | 0.928         |
@@ -133,11 +142,12 @@ ranking losses for all targets.
 | 7O27   | 0.03              | 0.079         | 0.079        | 0.079         | 0.334         |
 | BEST   | **0.195 ± 0.185** | 0.243 ± 0.206 | 0.227 ± 0.21 | 0.239 ± 0.187 | 0.343 ± 0.228 |
 
-
 ## DBM55-AF2 test set
+
 Table 3: Hit rate performance on DBM55-AF2 dataset. The BEST column represents each target’s best-possible Top-10 result.
 The SUMMARY row lists the results when all targets are taken into consideration.
-| Target  | DPROQ       | DPROQ_GT | DPROQ_GTE | DPROQ_GTN | GNN_DOVE | BEST    |
+
+| Target  | DPROQ       | DPROQ_GT | DPROQ_GTE | DPROQ_GTN | GNN_DOVE | BEST  |
 | ------- |-------------| -------- | --------- | --------- | -------- | ------- |
 | 6AL0    | 9/2/0       | 10/0/0   | 10/0/0    | 10/2/0    | 6/0/0    | 10/2/0  |
 | 3SE8    | 8/8/0       | 9/9/0    | 8/8/0     | 8/8/0     | 3/0/0    | 10/10/0 |
@@ -156,9 +166,10 @@ The SUMMARY row lists the results when all targets are taken into consideration.
 | 5KOV    | 0/0/0       | 0/0/0    | 0/0/0     | 0/0/0     | 1/0/0    | 2/0/0   |
 | SUMMARY | **12/10/3** | 12/9/1   | 12/9/1    | 12/10/1   | 10/4/1   | 15/10/3 |
 
-
 Table 4: Ranking loss performance on the DBM55-AF2 dataset. The BEST row represents the mean and standard deviation of
 the ranking losses for all targets.
+
+
 | Target | DPROQ             | DPROQ_GT      | DPROQ_GTE     | DPROQ_GTN     | GNN_DOVE      |
 | ------ |-------------------| ------------- | ------------- | ------------- | ------------- |
 | 6AL0   | 0.0               | 0.156         | 0.156         | 0.0           | 0.424         |
@@ -176,7 +187,5 @@ the ranking losses for all targets.
 | 3U7Y   | 0.0               | 0.021         | 0.0           | 0.0           | 0.756         |
 | 3WD5   | 0.011             | 0.011         | 0.011         | 0.0           | 0.672         |
 | 5KOV   | 0.065             | 0.08          | 0.085         | 0.087         | 0.0           |
-| BEST   | **0.049 ± 0.054** | 0.111 ± 0.182 | 0.061 ± 0.064 | 0.099 ± 0.185 | 0.379 ± 0.298 |
+| BEST   | **0.049 ± 0.054** | 0.111 ± 0.182 | 0.061 ± 0.064 | 0.099 ± 0.185 | 0.379 ± 0.298|
 
-# Train your own data with GGT
-We will release our training code and datasets soon.
