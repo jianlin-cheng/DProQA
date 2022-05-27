@@ -258,7 +258,7 @@ def distance_helper(pdb_file: str, pdb_name: str, output_folder: str, atom_type=
 
     if save_flag:
         np.save(file=os.path.join(output_folder, pdb_name + f'_{atom_type}.npy'), arr=real_dist)
-        return real_dist.shape[0]
+        return real_dist.shape
     else:
         return real_dist
 

@@ -7,6 +7,7 @@ from argparse import ArgumentParser
 from shutil import rmtree
 from pathlib import Path
 import logging
+from aem import con
 
 import torch
 from joblib import Parallel, delayed
@@ -74,11 +75,12 @@ def check_distance(pdb_file: str, decoy_name: str, output_folder: str) -> None:
     caca_dist_shape = distance_helper(pdb_file, decoy_name, output_folder, atom_type='CA')
     cbcb_dist_shape = distance_helper(pdb_file, decoy_name, output_folder, atom_type='CB')
     no_dist_shape = distance_helper(pdb_file, decoy_name, output_folder, atom_type='NO')
-    if caca_dist_shape != cbcb_dist_shape != no_dist_shape:
+    if caca_dist_shape == cbcb_dist_shape == no_dist_shape:
+        continue
+    else:
         ERROR_LIST.append(pdb_file)
         logging.warning('Requires CA-CA, CB-CB, N-O with same shape.')
         print(f'{decoy_name} CA shape: {caca_dist_shape}, CB shape: {cbcb_dist_shape}, NO shape: {no_dist_shape}')
-
     return None
 
 
