@@ -12,7 +12,7 @@ import dgl
 import scipy.sparse as sp
 import numpy as np
 from biopandas.pdb import PandasPdb
-from typing import List
+from typing import List, Union
 from sklearn.metrics.pairwise import euclidean_distances
 from torch.utils.data import Dataset
 
@@ -113,21 +113,26 @@ def pdb2fasta(pdb_file: str) -> str:
     return "".join(seq)
 
 
-def read_fasta(fasta_file: str):
-    """Read fasta file, return sequence id, length and content"""
+def read_fasta(fasta_file: str) -> tuple[str, int]:
+    """
+    Read fasta file, return sequence id, length and content
+    Support Fasta format example:
+    >Target_id|length
+    CCCCCCCCCCCCCCCCC
+    """
     with open(fasta_file) as f:
         content = f.readlines()
         f.close()
     seq = ''
-    for i in content:
-        if not (i.startswith('>')):
-            seq += i.strip()
-            return seq
-        else:
-            target_id, length = i.split('|')
-            target_id = target_id.strip().strip('>')
-            length = length.strip()
-            return target_id, length, seq
+    if len(content) == 1:
+        seq += content[0].strip()
+        return seq
+    else:
+        target_id, length = content[0].split('|')
+        target_id = target_id.strip().strip('>')
+        length = int(length.strip())
+        seq += content[1].strip()
+    return target_id, length, seq
 
 
 def sequence_one_hot(fasta_file: str) -> torch.Tensor:
@@ -173,6 +178,7 @@ def update_edge_feature(graph: dgl.DGLGraph, new_edge_features: List) -> None:
             graph.edata['f'] = edge_feature
         else:
             graph.edata['f'] = torch.cat((graph.edata['f'], edge_feature), dim=1)
+    return None
 
 
 def remove_n(lst: List, pattern='\n') -> List:
@@ -195,7 +201,7 @@ def list_to_txt(lst: List, txt_file: str) -> None:
     return None
 
 
-def pdb2graph_new_chain_info(pdb_file: str, knn=10) -> (pd.DataFrame, dgl.DGLGraph, torch.Tensor):
+def pdb2graph_new_chain_info(pdb_file: str, knn=10) -> tuple[pd.DataFrame, dgl.DGLGraph, torch.Tensor]:
     """
     Build KNN graph for a protein, return graph and src vertex
     and end dst vertex for graph, without self-loop, PEEE chain ID
@@ -228,7 +234,9 @@ def pdb2graph_new_chain_info(pdb_file: str, knn=10) -> (pd.DataFrame, dgl.DGLGra
     return atom_df_full, protein_graph, edges, torch.tensor(uniform_chain_feature).reshape(-1, 1)
 
 
-def distance_helper(pdb_file: str, pdb_name: str, output_folder: str, atom_type='CB', save_flag=True):
+def distance_helper(pdb_file: str, pdb_name: str,
+                    output_folder: str, atom_type='CB',
+                    save_flag=True) -> Union[tuple, np.ndarray]:
     """Calculate CA-CA, or CB-CB or N-O distance for a pdb file"""
     ppdb = PandasPdb().read_pdb(pdb_file)
     test_df = ppdb.df['ATOM']
@@ -283,7 +291,7 @@ class TestData(Dataset):
             self.data.append(g[0])
 
 
-def collate(samples):
+def collate(samples) -> dgl.DGLGraph:
     """Customer collate function"""
     batched_graph = dgl.batch(samples)
     return batched_graph
