@@ -60,7 +60,7 @@ Each dataset contains:
 3. Activate conda environment
    
    ```bash
-   conda acitvate DPRoQ
+   conda activate DPRoQ
    ```
 
 # Usage
