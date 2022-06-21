@@ -3,6 +3,7 @@
 """
 
 import os
+import re
 from shutil import copy
 from subprocess import call
 from biopandas.pdb import PandasPdb
@@ -45,6 +46,19 @@ def clean_pipe(pdb_file: str, output_folder: str, save_flag=False) -> None:
     chain_list_tmp = sequence.loc[:, 'chain_id'].tolist()
     chain_list = []
     [chain_list.append(x) for x in chain_list_tmp if x not in chain_list]
+
+    if ppdb.df['ATOM'].loc[:, 'element_symbol'].unique().shape[0] == 1:
+        print(f'The element_symbol column is empty, {pdb_file}')
+        atom_name_list = ppdb.df['ATOM'].loc[:, 'atom_name'].tolist()
+        element_symbol_list = []
+        for i in atom_name_list:
+            i = re.sub(r'[^a-zA-Z]', '', i)
+            element_symbol_list.append(i[0])
+        ppdb.df['ATOM'].loc[:, 'element_symbol'] = element_symbol_list
+        ppdb.to_pdb(path=pdb_file,  # overwrite the raw file
+                    records=None,
+                    gz=False,
+                    append_newline=True)
 
     # 1. Keep ATOM
     tmp_file_1 = os.path.join(output_folder, model_name + '_tmp_v1.pdb')
