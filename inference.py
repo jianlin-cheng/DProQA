@@ -59,7 +59,7 @@ tidy_folder = os.path.join(work_dir, 'TIDY')
 os.makedirs(dist_folder, exist_ok=True)
 os.makedirs(tidy_folder, exist_ok=True)
 
-# clean input pdb -> reresiude ->  reatom, keep line starts with ATOM, TER, and END
+# clean input pdb -> add element_symbol -> re-residue ->  re-atom, keep line starts with (ATOM, TER, END)
 if not os.path.isfile(os.path.join(work_dir, 'tidy.flag')):
     print('Staring clean pdb file')
     for item in os.listdir(complex_folder):
@@ -88,6 +88,7 @@ if not os.path.isfile(os.path.join(work_dir, 'dist.flag')):
     for i in os.listdir(tidy_folder):
         decoy_name = i[:-9]  # remove _tidy.pdb
         tidy_pdb = os.path.join(tidy_folder, i)
+        # ignore pdb with missing atom
         check_distance(pdb_file=tidy_pdb, decoy_name=decoy_name, output_folder=dist_folder)
     f = open(os.path.join(work_dir, 'dist.flag'), "x")
 else:
