@@ -7,7 +7,6 @@ from argparse import ArgumentParser
 from shutil import rmtree
 from pathlib import Path
 import logging
-from aem import con
 
 import torch
 from joblib import Parallel, delayed
