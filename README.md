@@ -1,7 +1,7 @@
-# DProQ: A Gated-Graph Transformer for Protein Complex Structure Assessment
+# DProQA: A Gated-Graph Transformer for Protein Complex Structure Assessment
 
-[DProQ](https://www.biorxiv.org/content/early/2022/05/20/2022.05.19.492741), is a Gated-Graph Transformer model for 
-end-to-end protein complex structure's quality evaluation. DProQ achieves significant speed-ups and better quality 
+[DProQA](https://www.biorxiv.org/content/early/2022/05/20/2022.05.19.492741), is a Gated-Graph Transformer model for 
+end-to-end protein complex structure's quality evaluation. DProQA achieves significant speed-ups and better quality 
 compared to current baseline method. If you have any questions or suggestions, please contact us by  <xcbh6@umsystem.edu>
 . We are happy to help!
 
@@ -78,7 +78,7 @@ python inference.py
 
 # Use provided model weights to predict protein complex structures' quality
 
-**DProQ requires GPU**. We provide few protein complexes in `example` folder for test. The evaluation result Ranking.csv is stored in result_folder.
+**DProQA requires GPU**. We provide few protein complexes in `example` folder for test. The evaluation result Ranking.csv is stored in result_folder.
 
 ```bash
 python ./inference.py -c ./examples/6AL0/ -w ./examples/work/ -r ./examples/result
@@ -105,7 +105,7 @@ Following four tables show DProQ's consistent **best** result on HAF2 and DBM55-
 Table 1: Hit rate performance on the HAF2 dataset. The BEST column represents each target’s best-possible Top-10 result.
 The SUMMARY row lists the results when all targets are taken into consideration.
 
-| ID      | DPROQ      | DPROQ_GT | DPROQ_GTE | DPROQ_GTN | GNN_DOVE | BEST     |
+| ID      | DPROQA      | DPROQA_GT | DPROQA_GTE | DPROQA_GTN | GNN_DOVE | BEST     |
 | ------- |------------| -------- | --------- | --------- | -------- | -------- |
 | 7AOH    | 10/10/10   | 10/10/10 | 10/10/10  | 10/10/10  | 9/9/0    | 10/10/10 |
 | 7D7F    | 0/0/0      | 0/0/0    | 0/0/0     | 0/0/0     | 0/0/0    | 5/0/0    |
@@ -125,7 +125,7 @@ The SUMMARY row lists the results when all targets are taken into consideration.
 Table 2: Ranking loss performance on the HAF2 dataset. The BEST row represents the mean and standard deviation of the
 ranking losses for all targets.
 
-| Target | DPROQ             | DProQ_GT      | DPROQ_GTE    | DPROQ_GTN     | GNN_DOVE      |
+| Target | DPROQA             | DProQA_GT      | DPROQA_GTE    | DPROQA_GTN     | GNN_DOVE      |
 | ------ |-------------------| ------------- | ------------ | ------------- | ------------- |
 | 7AOH   | 0.066             | 0.026         | 0.026        | 0.058         | 0.928         |
 | 7D7F   | 0.471             | 0.471         | 0.47         | 0.471         | 0.003         |
@@ -147,45 +147,44 @@ ranking losses for all targets.
 Table 3: Hit rate performance on DBM55-AF2 dataset. The BEST column represents each target’s best-possible Top-10 result.
 The SUMMARY row lists the results when all targets are taken into consideration.
 
-| Target  | DPROQ       | DPROQ_GT | DPROQ_GTE | DPROQ_GTN | GNN_DOVE | BEST  |
-| ------- |-------------| -------- | --------- | --------- | -------- | ------- |
-| 6AL0    | 9/2/0       | 10/0/0   | 10/0/0    | 10/2/0    | 6/0/0    | 10/2/0  |
-| 3SE8    | 8/8/0       | 9/9/0    | 8/8/0     | 8/8/0     | 3/0/0    | 10/10/0 |
-| 5GRJ    | 10/10/0     | 9/9/0    | 10/10/0   | 9/9/0     | 3/2/0    | 10/10/0 |
-| 6A77    | 7/7/0       | 7/7/0    | 8/8/0     | 8/8/0     | 0/0/0    | 8/8/0   |
-| 4M5Z    | 10/10/1     | 10/10/0  | 10/10/0   | 10/10/0   | 10/10/0  | 10/10/1 |
-| 4ETQ    | 1/1/0       | 1/1/0    | 1/1/0     | 1/1/0     | 0/0/0    | 1/1/0   |
-| 5CBA    | 10/10/1     | 10/10/0  | 10/10/0   | 10/10/1   | 10/10/3  | 10/10/6 |
-| 5WK3    | 0/0/0       | 0/0/0    | 0/0/0     | 0/0/0     | 1/0/0    | 3/0/0   |
-| 5Y9J    | 4/0/0       | 6/0/0    | 5/0/0     | 4/0/0     | 0/0/0    | 8/0/0   |
-| 6BOS    | 10/10/0     | 10/10/0  | 10/10/0   | 10/10/0   | 10/10/0  | 10/10/0 |
-| 5HGG    | 8/0/0       | 8/0/0    | 8/0/0     | 8/0/0     | 8/0/0    | 10/0/0  |
-| 6A0Z    | 0/0/0       | 0/0/0    | 0/0/0     | 0/0/0     | 2/0/0    | 3/0/0   |
-| 3U7Y    | 2/2/1       | 2/2/1    | 2/2/1     | 2/1/0     | 2/2/1    | 2/2/1   |
-| 3WD5    | 10/8/0      | 9/8/0    | 9/8/0     | 9/8/0     | 0/0/0    | 10/10/0 |
-| 5KOV    | 0/0/0       | 0/0/0    | 0/0/0     | 0/0/0     | 1/0/0    | 2/0/0   |
-| SUMMARY | **12/10/3** | 12/9/1   | 12/9/1    | 12/10/1   | 10/4/1   | 15/10/3 |
+| Target  | DPROQA  | DPROQA_GT | DPROQA_GTE | DPROQA_GTN | GOAP    | ZRANK2  | GNN_DOVE | BEST    |
+|---------|---------|-----------|------------|------------|---------|---------|----------|---------|
+| 6ALO    | 9/2/0   | 10/0/0    | 10/0/0     | 10/2/0     | 6/0/0   | 9/0/0   | 9/0/0    | 10/2/0  |
+| 3SE8    | 8/8/0   | 9/9/0     | 8/8/0      | 8/8/0      | 3/0/0   | 8/8/0   | 2/2/0    | 10/10/0 |
+| 5GRJ    | 10/10/0 | 9/9/0     | 10/10/0    | 9/9/0      | 3/2/0   | 10/9/0  | 5/4/0    | 10/10/0 |
+| 6A77    | 7/7/0   | 7/7/0     | 8/8/0      | 8/8/0      | 0/0/0   | 3/3/0   | 4/4/0    | 8/8/0   |
+| 4M5Z    | 10/10/1 | 10/10/0   | 10/10/0    | 10/10/0    | 10/10/0 | 10/10/1 | 10/10/1  | 10/10/1 |
+| 4ETQ    | 1/1/0   | 1/1/0     | 1/1/0      | 1/1/0      | 0/0/0   | 1/1/0   | 1/1/0    | 1/1/0   |
+| 5CBA    | 10/10/1 | 10/10/0   | 10/10/0    | 10/10/1    | 10/10/3 | 10/10/2 | 10/10/4  | 10/10/6 |
+| 5WK3    | 0/0/0   | 0/0/0     | 0/0/0      | 0/0/0      | 1/0/0   | 0/0/0   | 3/0/0    | 3/0/0   |
+| 5Y9J    | 4/0/0   | 6/0/0     | 5/0/0      | 4/0/0      | 0/0/0   | 5/0/0   | 5/0/0    | 8/0/0   |
+| 6BOS    | 10/10/0 | 10/10/0   | 10/10/0    | 10/10/0    | 10/10/0 | 10/10/0 | 10/10/0  | 10/10/0 |
+| 5HGG    | 8/0/0   | 8/0/0     | 8/0/0      | 8/0/0      | 8/0/0   | 10/0/0  | 10/0/0   | 10/0/0  |
+| 6AOZ    | 0/0/0   | 0/0/0     | 0/0/0      | 0/0/0      | 2/0/0   | 0/0/0   | 0/0/0    | 3/0/0   |
+| 3U7Y    | 2/2/1   | 2/2/1     | 2/2/1      | 2/1/0      | 2/2/1   | 2/2/1   | 1/1/1    | 2/2/1   |
+| 3WD5    | 10/8/0  | 9/8/0     | 9/8/0      | 9/8/0      | 0/0/0   | 10/8/0  | 6/4/0    | 10/10/0 |
+| 5KOV    | 0/0/0   | 0/0/0     | 0/0/0      | 0/0/0      | 1/0/0   | 1/0/0   | 0/0/0    | 2/0/0   |
+| SUMMARY | 12/10/3 | 12/9/1    | 12/9/1     | 12/10/1    | 13/9/3  | 13/10/3 | 10/4/1   | 15/10/3 |
 
 Table 4: Ranking loss performance on the DBM55-AF2 dataset. The BEST row represents the mean and standard deviation of
 the ranking losses for all targets.
 
 
-| Target | DPROQ             | DPROQ_GT      | DPROQ_GTE     | DPROQ_GTN     | GNN_DOVE      |
-| ------ |-------------------| ------------- | ------------- | ------------- | ------------- |
-| 6AL0   | 0.0               | 0.156         | 0.156         | 0.0           | 0.424         |
-| 3SE8   | 0.079             | 0.041         | 0.041         | 0.079         | 0.735         |
-| 5GRJ   | 0.024             | 0.012         | 0.095         | 0.012         | 0.776         |
-| 6A77   | 0.037             | 0.062         | 0.0           | 0.037         | 0.591         |
-| 4M5Z   | 0.015             | 0.026         | 0.026         | 0.015         | 0.221         |
-| 4ETQ   | 0.0               | 0.76          | 0.0           | 0.748         | 0.759         |
-| 5CBA   | 0.052             | 0.038         | 0.052         | 0.058         | 0.019         |
-| 5WK3   | 0.114             | 0.114         | 0.114         | 0.186         | 0.087         |
-| 5Y9J   | 0.0               | 0.0           | 0.0           | 0.0           | 0.382         |
-| 6BOS   | 0.081             | 0.081         | 0.0           | 0.0           | 0.081         |
-| 5HGG   | 0.051             | 0.051         | 0.121         | 0.051         | 0.121         |
-| 6A0Z   | 0.207             | 0.207         | 0.207         | 0.207         | 0.062         |
-| 3U7Y   | 0.0               | 0.021         | 0.0           | 0.0           | 0.756         |
-| 3WD5   | 0.011             | 0.011         | 0.011         | 0.0           | 0.672         |
-| 5KOV   | 0.065             | 0.08          | 0.085         | 0.087         | 0.0           |
-| BEST   | **0.049 ± 0.054** | 0.111 ± 0.182 | 0.061 ± 0.064 | 0.099 ± 0.185 | 0.379 ± 0.298|
-
+| Target | DPROQA      | DProQA_GT   | DPROQA_GTE  | DPROQA_GTN  | GOAP        | ZRANK2      | GNN_DOVE    |
+|--------|-------------|-------------|-------------|-------------|-------------|-------------|-------------|
+| 6ALO   | 0.0         | 0.156       | 0.156       | 0.0         | 0.331       | 0.016       | 0.424       |
+| 3SE8   | 0.079       | 0.041       | 0.041       | 0.079       | 0.0         | 0.677       | 0.735       |
+| 5GRJ   | 0.024       | 0.012       | 0.095       | 0.012       | 0.23        | 0.757       | 0.776       |
+| 6A77   | 0.037       | 0.062       | 0.0         | 0.037       | 0.59        | 0.539       | 0.591       |
+| 4M5Z   | 0.015       | 0.026       | 0.026       | 0.015       | 0.133       | 0.221       | 0.221       |
+| 4ETQ   | 0.0         | 0.76        | 0.0         | 0.748       | 0.0         | 0.759       | 0.759       |
+| 5CBA   | 0.052       | 0.038       | 0.052       | 0.058       | 0.007       | 0.047       | 0.019       |
+| 5WK3   | 0.114       | 0.114       | 0.114       | 0.186       | 0.109       | 0.0         | 0.087       |
+| 5Y9J   | 0.0         | 0.0         | 0.0         | 0.0         | 0.0         | 0.027       | 0.382       |
+| 6BOS   | 0.081       | 0.081       | 0.0         | 0.0         | 0.09        | 0.006       | 0.081       |
+| 5HGG   | 0.051       | 0.051       | 0.121       | 0.051       | 0.051       | 0.051       | 0.121       |
+| 6A0Z   | 0.207       | 0.207       | 0.207       | 0.207       | 0.214       | 0.012       | 0.062       |
+| 3U7Y   | 0.0         | 0.021       | 0.0         | 0.0         | 0.0         | 0.772       | 0.756       |
+| 3WD5   | 0.011       | 0.011       | 0.011       | 0.0         | 0.011       | 0.595       | 0.672       |
+| 5KOV   | 0.065       | 0.08        | 0.085       | 0.087       | 0.078       | 0.01        | 0.0         |
+| BEST   | 0.049 0.054 | 0.111 0.182 | 0.061 0.064 | 0.099 0.185 | 0.123 0.025 | 0.299 0.104 | 0.379 0.298 |
