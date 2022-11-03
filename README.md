@@ -47,20 +47,20 @@ Each dataset contains:
 1. Download this repository
    
    ```bash
-   git clone https://github.com/BioinfoMachineLearning/DProQ.git
+   git clone https://github.com/BioinfoMachineLearning/DProQA.git
    ```
 
 2. Set up conda environment locally
    
    ```bash
-   cd DProQ
-   conda env create --name DProQ -f environment.yml
+   cd DProQA
+   conda env create --name DProQA -f environment.yml
    ```
 
 3. Activate conda environment
    
    ```bash
-   conda activate DPRoQ
+   conda activate DPRoQA
    ```
 
 # Usage
