@@ -53,7 +53,7 @@ Each dataset contains:
 2. Set up conda environment locally
    
    ```bash
-   cd DProQ
+   cd DProQA
    conda env create --name DProQA -f environment.yml
    ```
 
