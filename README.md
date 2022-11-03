@@ -98,7 +98,7 @@ customer_data_folder
 # Main results
 
 Following four tables show DProQ's consistent **best** result on HAF2 and DBM55-AF2 test sets in terms of *hit rate* and 
-*ranking loss*. The best result is highlighted on **bold**.
+*ranking loss*.
 
 ## HAF2  test set
 
