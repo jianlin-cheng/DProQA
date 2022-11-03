@@ -103,7 +103,7 @@ Following four tables show DProQ's consistent **best** result on HAF2 and DBM55-
 ## HAF2  test set
 
 Table 1: Hit rate performance on the HAF2 dataset. The Best column represents each target’s best-possible Top-10 result. The Summary
-row lists the results when all targets are taken into consideration. -: GOAP failed on these targets due to the sequence length.
+row lists the results when all targets are taken into consideration. -: GOAP failed on these targets due to the large sequence length.
 
 | Target  | DProQA   | DProQA_GT | DProQA_GTE | DProQA_GTN | GOAP      | ZRANK2   | GNN_DOVE | BEST     |
 |---------|----------|-----------|------------|------------|-----------|----------|----------|----------|
@@ -123,7 +123,7 @@ row lists the results when all targets are taken into consideration. -: GOAP fai
 | SUMMARY | 10/9/4   | 8/7/4     | 8/7/4      | 8/7/4      | N/A       | 11/9/4   | 8/7/3    | 13/10/4  |
 
 Table 2: Ranking loss performance on the HAF2 dataset. The BEST row represents the mean and standard deviation of the ranking losses
-for all targets. -: GOAP failed on these targets due to the sequence length.
+for all targets. -: GOAP failed on these targets due to the large sequence length.
 
 | Target | DPrOQA       | DProQA_GT    | DProQA_GTE  | DProQA_GTN   | GOAP   | ZRANK2       | GNN_DOVE     |
 |--------|--------------|--------------|-------------|--------------|--------|--------------|--------------|
