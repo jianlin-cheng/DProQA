@@ -2,7 +2,7 @@
 
 ## CASP15 result
 
-In terms of TMscore ranking loss, DProQA ranked 9th among all 26 methods and 3rd place among all single-model methods.
+In terms of TMscore ranking loss, DProQA (team: MULTICOM_egnn) ranked 9th among all 26 methods and 3rd place among all single-model methods.
 ![tm_loss.png](./images/tm_loss.png)
 
 ------------------------
