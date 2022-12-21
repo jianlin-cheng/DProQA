@@ -1,5 +1,10 @@
 # DProQA: A Gated-Graph Transformer for Protein Complex Structure Assessment
 
+## CASP15 result
+
+In terms of TMscore ranking loss, DProQA ranked 9th among all 26 methods and 3rd place among all single-model methods.
+
+------------------------
 [DProQA](https://www.biorxiv.org/content/early/2022/05/20/2022.05.19.492741), is a Gated-Graph Transformer model for 
 end-to-end protein complex structure's quality evaluation. DProQA achieves significant speed-ups and better quality 
 compared to current baseline method. If you have any questions or suggestions, please contact us by  <xcbh6@umsystem.edu>
