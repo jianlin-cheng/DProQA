@@ -66,7 +66,7 @@ Each dataset contains:
 3. Activate condaA environment
    
    ```bash
-   conda activate DPRoQA
+   conda activate DProQA
    ```
 
 # Usage
