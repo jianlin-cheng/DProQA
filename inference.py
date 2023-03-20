@@ -162,7 +162,7 @@ df = pd.DataFrame(list(zip(model_list, pred_dockq)), columns=['MODEL', 'PRED_DOC
 df.sort_values(by='PRED_DOCKQ', ascending=False, inplace=True)
 df.loc[:, 'PRED_DOCKQ'] = df.loc[:, 'PRED_DOCKQ'].round(5)
 df.to_csv(os.path.join(result_folder, 'Ranking.csv'), index=False)
-print(f"Result is {os.path.join(result_folder, 'DOCKQ_ranking.csv')}")
+print(f"Result is {os.path.join(result_folder, 'Ranking.csv')}")
 
 
 if delete_tmp:
