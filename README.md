@@ -53,7 +53,7 @@ Each dataset contains:
 1. Download this repository
    
    ```bash
-   git clone https://github.com/BioinfoMachineLearning/DProQA.git
+   git clone https://github.com/jianlin-cheng/DProQA.git
    ```
 
 2. Set up conda environment locally
