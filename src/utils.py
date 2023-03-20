@@ -113,7 +113,7 @@ def pdb2fasta(pdb_file: str) -> str:
     return "".join(seq)
 
 
-def read_fasta(fasta_file: str) -> tuple[str, int]:
+def read_fasta(fasta_file: str):
     """
     Read fasta file, return sequence id, length and content
     Support Fasta format example:
@@ -201,7 +201,7 @@ def list_to_txt(lst: List, txt_file: str) -> None:
     return None
 
 
-def pdb2graph_new_chain_info(pdb_file: str, knn=10) -> tuple[pd.DataFrame, dgl.DGLGraph, torch.Tensor]:
+def pdb2graph_new_chain_info(pdb_file: str, knn=10):
     """
     Build KNN graph for a protein, return graph and src vertex
     and end dst vertex for graph, without self-loop, PEEE chain ID
