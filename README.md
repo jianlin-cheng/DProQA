@@ -1,5 +1,9 @@
 # DProQA: A Gated-Graph Transformer for Protein Complex Structure Assessment
 
+ISMB2023
+
+Our work has been accpeted by ISMB2023, [here](https://drive.google.com/file/d/1hLTwlE8deQ1x2_CLbboo07omNcyVdHQi/view?usp=sharing) is the latest vision of our manuscirpt.
+
 ## CASP15 result
 
 In terms of TMscore ranking loss, DProQA (team: MULTICOM_egnn) ranked 9th among all 26 methods and **3rd** place among all single-model methods.
