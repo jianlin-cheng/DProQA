@@ -2,7 +2,7 @@
 
 ISMB2023
 
-Our work has been accpeted by ISMB2023, [here](https://drive.google.com/file/d/1hLTwlE8deQ1x2_CLbboo07omNcyVdHQi/view?usp=sharing) is the latest vision of our manuscirpt.
+Our work has been accpeted by ISMB2023, [here](https://drive.google.com/file/d/1hLTwlE8deQ1x2_CLbboo07omNcyVdHQi/view?usp=sharing) is the latest manuscirpt.
 
 ## CASP15 result
 
@@ -17,7 +17,7 @@ compared to current baseline method. If you have any questions or suggestions, p
 
 ![pipeline.png](./images/pipeline.png)
 
-![gated_graph_transformer.png](./images/gated_graph_transformer.png)
+![gated_graph_transformer.png](./images/GGT_V4.png)
 
 # Citation
 
