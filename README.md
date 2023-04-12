@@ -7,7 +7,7 @@ Our work has been accpeted by ISMB2023, [here](https://drive.google.com/file/d/1
 ## CASP15 result
 
 In terms of TMscore ranking loss, DProQA (team: MULTICOM_egnn) ranked 9th among all 26 methods and **3rd** place among all single-model methods.
-![tm_loss.png](./images/tm_loss.png)
+![tm_loss.png](./images/CASP15.png)
 
 ------------------------
 [DProQA](https://www.biorxiv.org/content/10.1101/2022.05.19.492741v3), is a Gated-Graph Transformer model for 
