@@ -64,7 +64,7 @@ Each dataset contains:
    conda env create --name DProQA -f environment.yml
    ```
 
-3. Activate condaA environment
+3. Activate conda environment
    
    ```bash
    conda activate DProQA
