@@ -14,7 +14,7 @@ dependencies:
   - torchvision
   - biopython
   - dssp=3.0.0
-  - pytorch-lightning
+  - pytorch-lightning=1.5.10
   - scikit-learn
   - pandas
   - joblib
