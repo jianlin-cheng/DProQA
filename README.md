@@ -10,7 +10,7 @@ In terms of TMscore ranking loss, DProQA (team: MULTICOM_egnn) ranked 9th among 
 ![tm_loss.png](./images/CASP15.png)
 
 ------------------------
-DProA is a Gated-Graph Transformer model for  end-to-end protein complex structure's quality evaluation. DProQA achieves significant speed-ups and better quality compared to the current baseline method. If you have any questions or suggestions, please contact us at  <xcbh6@umsystem.edu>. We are happy to help!
+DProQA is a Gated-Graph Transformer model for  end-to-end protein complex structure's quality evaluation. DProQA achieves significant speed-ups and better quality compared to the current baseline method. If you have any questions or suggestions, please contact us at  <xcbh6@umsystem.edu>. We are happy to help!
 
 ![pipeline.png](./images/pipeline.png)
 
