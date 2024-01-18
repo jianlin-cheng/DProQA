@@ -86,6 +86,12 @@ python inference.py
 -s --delete_tmp         Set False to save work_dir and intermedia files, otherwise set True, default=False
 ```
 
+# Build own training data
+If you want to buuld your own training data with our pipeline. You can use following command:
+```bash
+TODO
+```
+
 # Use provided model weights to predict protein complex structures' quality
 
 **DProQA requires GPU**. We provide a few protein complexes in `example` folder for testing. The evaluation result Ranking.csv is stored in result_folder.
