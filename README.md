@@ -87,10 +87,27 @@ python inference.py
 ```
 
 # Build own training data
-If you want to buuld your own training data with our pipeline. You can use following command:
+If you want to build your own training data with our pipeline. We provide a wraper to do it.
+
 ```bash
-TODO
+customer_data_folder
+├── pdbcode1.pdb
+├── pdbcode2.pdb
+├── pdbcode3.pdb
+├── pdbcode4.pdb
+└── pdbcode5.pdb
 ```
+
+```bash
+python ./src/data_generator.py
+--input_pdb_folder -p input pdbs folder
+--dgl_save_folder -d dgl files save folder
+--cores  -c number of cores for parallel processing
+
+# example code
+python ./src/data_generator.py -p /example_pdbs_folder/ -d /dgl_save_folder -c 10
+```
+
 
 # Use provided model weights to predict protein complex structures' quality
 
