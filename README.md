@@ -87,7 +87,7 @@ python inference.py
 ```
 
 # Build own training data
-If you want to build your own training data with our pipeline. We provide a wraper to do it.
+Due to the larger data size, we are not able to provide direct download. But we provided our training, validation targets list. You could to use any protein complex structure prediction tool to generate predicted structures (pdb format) first, then use our data generation script to generate protein graph (.dgl) for training. 
 
 ```bash
 customer_data_folder
