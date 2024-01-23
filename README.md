@@ -36,22 +36,6 @@ If you think our work is helpful, please cite our work by:
     eprint = {https://academic.oup.com/bioinformatics/article-pdf/39/Supplement\_1/i308/50741583/btad203.pdf},
 }
 ```
-
-# Dataset
-## Benchmark sets
-
-We provide our benchmark tests HAF2 and DBM55-AF2 for download by:
-
-```bash
-wget https://zenodo.org/record/6569837/files/DproQ_benchmark.tgz
-```
-
-Each dataset contains:
-
-1. `decoy` folder: decoys files
-2. `native` folder: native structure files
-3. `label_info.csv`: DockQA scores and CAPRI class label
-
 # Installation
 
 1. Download this repository
@@ -72,21 +56,23 @@ Each dataset contains:
    ```bash
    conda activate DProQA
    ```
+   
+# Dataset
+## Benchmark sets
 
-# Usage
-
-Here is the inference.py script parameters' introduction.
+We provide our benchmark tests HAF2 and DBM55-AF2 for download by:
 
 ```bash
-python inference.py
--c --complex_folder     Raw protein complex complex_folder
--w --work_dir           Working directory to save all intermedia files and folders, it will be created if it is not exit
--r --result_folder      Result folder to save two ranking results, it will be created if it is not exit
--r --threads            Number of threads for parallel feature generation and dataloader, default=10
--s --delete_tmp         Set False to save work_dir and intermedia files, otherwise set True, default=False
+wget https://zenodo.org/record/6569837/files/DproQ_benchmark.tgz
 ```
 
-# Build own training data
+Each dataset contains:
+
+1. `decoy` folder: decoys files
+2. `native` folder: native structure files
+3. `label_info.csv`: DockQA scores and CAPRI class label
+
+## Build own training data
 Due to the larger data size, we are not able to provide direct download. But we provided our training, validation targets information in `Data/data_list` folder. You could to use any protein complex structure prediction tool to generate predicted structures (pdb format) first, then use our data generation script to generate protein graph (.dgl) for training. 
 
 ```bash
@@ -108,6 +94,18 @@ python ./src/data_generator.py
 python ./src/data_generator.py -p /example_pdbs_folder/ -d /dgl_save_folder -c 10
 ```
 
+# Usage
+
+Here is the inference.py script parameters' introduction.
+
+```bash
+python inference.py
+-c --complex_folder     Raw protein complex complex_folder
+-w --work_dir           Working directory to save all intermedia files and folders, it will be created if it is not exit
+-r --result_folder      Result folder to save two ranking results, it will be created if it is not exit
+-r --threads            Number of threads for parallel feature generation and dataloader, default=10
+-s --delete_tmp         Set False to save work_dir and intermedia files, otherwise set True, default=False
+```
 
 # Use provided model weights to predict protein complex structures' quality
 
