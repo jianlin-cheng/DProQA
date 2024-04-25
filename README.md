@@ -103,7 +103,7 @@ python inference.py
 -c --complex_folder     Raw protein complex complex_folder
 -w --work_dir           Working directory to save all intermedia files and folders, it will be created if it is not exit
 -r --result_folder      Result folder to save two ranking results, it will be created if it is not exit
--r --threads            Number of threads for parallel feature generation and dataloader, default=10
+-t --threads            Number of threads for parallel feature generation and dataloader, default=10
 -s --delete_tmp         Set False to save work_dir and intermedia files, otherwise set True, default=False
 ```
 
